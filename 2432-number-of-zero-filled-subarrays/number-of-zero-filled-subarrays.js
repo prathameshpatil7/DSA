@@ -5,18 +5,14 @@
 var zeroFilledSubarray = function (nums) {
     let result = 0;
     let count = 0;
-
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] === 0) {
+    const n = nums.length;
+    for(let i=0; i< n; i++){
+        if(nums[i] === 0){
             count++;
-            continue;
+            result+=count;
+        } else{
+            count = 0;
         }
-
-        result += (count * (count + 1)) / 2;
-        count = 0;
     }
-
-    result += (count * (count + 1)) / 2;
-
     return result;
 };
