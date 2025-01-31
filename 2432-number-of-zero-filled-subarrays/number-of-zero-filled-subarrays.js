@@ -3,15 +3,20 @@
  * @return {number}
  */
 var zeroFilledSubarray = function (nums) {
-    let res = 0; let cur = 0;
-    nums.forEach(num => {
-        if (num === 0) {
-            cur++;
-            res += cur;
+    let result = 0;
+    let count = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === 0) {
+            count++;
+            continue;
         }
-        else {
-            cur = 0;
-        }
-    });
-    return res;
+
+        result += (count * (count + 1)) / 2;
+        count = 0;
+    }
+
+    result += (count * (count + 1)) / 2;
+
+    return result;
 };
