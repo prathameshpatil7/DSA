@@ -34,20 +34,15 @@ var isSubsequence = function (s, t) {
 
 
 
-    let result = false;
     let tLength = t.length;
     let sLength = s.length;
     let sPoint = 0;
     if (sLength === 0) return true;
     for (let i = 0; i < tLength; i++) {
         if (s[sPoint] === t[i]) {
-            sPoint++;
-            if (sPoint === sLength) {
-                result = true;
-            }
+            sPoint++;   
         }
     }
 
-    return result;
-
+   return sPoint === sLength;
 };
