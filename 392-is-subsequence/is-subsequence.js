@@ -3,7 +3,7 @@
  * @param {string} t
  * @return {boolean}
  */
-var isSubsequence = function(s, t) {
+var isSubsequence = function (s, t) {
     // let i = 0, j = 0;
     // while (i < s.length && j < t.length) {
     //     if (s[i] === t[j]) {
@@ -12,21 +12,42 @@ var isSubsequence = function(s, t) {
     //     j++;
     // }
     // return i === s.length;
-     let n = s.length;
-    let m = t.length;
-    let k = 0;
-    let str = "";
-    for(let i = 0; i<n; i++)
-    {
-        for(let j = k; j<m; j++)
-        {
-            if(s[i] == t[j])
-            {
-                k = j+1;
-                str += s[i];
-                break;
+    //  let n = s.length;
+    // let m = t.length;
+    // let k = 0;
+    // let str = "";
+    // for(let i = 0; i<n; i++)
+    // {
+    //     for(let j = k; j<m; j++)
+    //     {
+    //         if(s[i] == t[j])
+    //         {
+    //             k = j+1;
+    //             str += s[i];
+    //             break;
+    //         }
+    //     }
+    // }
+    // return s === str;
+
+
+
+
+
+    let result = false;
+    let tLength = t.length;
+    let sLength = s.length;
+    let sPoint = 0;
+    if (sLength === 0) return true;
+    for (let i = 0; i < tLength; i++) {
+        if (s[sPoint] === t[i]) {
+            sPoint++;
+            if (sPoint === sLength) {
+                result = true;
             }
         }
     }
-    return s === str;
+
+    return result;
+
 };
