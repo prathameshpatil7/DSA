@@ -21,6 +21,3 @@ var isPalindrome = function (s) {
     }
     return result;
 };
-function isAlphaNumeric(char) {
-    return /^[a-zA-Z0-9]$/.test(char);
-}
