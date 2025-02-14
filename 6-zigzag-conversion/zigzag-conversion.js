@@ -4,59 +4,33 @@
  * @return {string}
  */
 var convert = function (s, numRows) {
-    // 5 3 1
-    // if (numRows === 1) {
-    //     return s;
-    // }
-
-    // let result = "";
-    // let n= s.length;
-    // let cycLen = 2 * numRows - 2;
+    // let n = s.length;
+    // if (n < 1) return "";
+    // let step = 2 * numRows - 2;
+    // let resArr = new Array(numRows).fill("");
     // for (let i = 0; i < numRows; i++) {
-    //     for (let j = 0; j + i < n; j += cycLen) {
-    //         result += s[j + i];
-    //         if (i !== 0 && i !== numRows - 1 && j + cycLen - i < n) {
-    //             result += s[j + cycLen - i];
-    //         }
+    //     for (let j = i; j + step < n; j += step) {
+    //         resArr[i] += s[j];
+
     //     }
-    // }
-    // return result;
-
-    // if (numRows === 1) return s; // No zigzag needed
-
-    // let rows = new Array(Math.min(numRows, s.length)).fill("").map(() => ""); 
-    // let currRow = 0;
-    // let goingDown = false;
-
-    // // Traverse the string
-    // for (let c of s) {
-    //     rows[currRow] += c;
-    //     if (currRow === 0 || currRow === numRows - 1) {
-    //         goingDown = !goingDown; // Change direction
-    //     }
-    //     currRow += goingDown ? 1 : -1;
+    //     step -= 1;
     // }
 
-    // // Concatenate rows to form final output
-    // return rows.join("");
+    // return resArr.join();
+       if (numRows === 1 || s.length <= numRows) return s;
 
-     if (numRows === 1 || s.length <= numRows) return s; // No zigzag needed
+    let rows = Array.from({ length: numRows }, () => "");
+    let index = 0, step = 1;
 
-    let result = "";
-    let step = 2 * numRows - 2; // Full cycle length
+    for (let char of s) {
+        rows[index] += char;
 
-    // Traverse each row
-    for (let row = 0; row < numRows; row++) {
-        for (let i = row; i < s.length; i += step) {
-            result += s[i]; // Character from the downward direction
+        // Change direction at the first or last row
+        if (index === 0) step = 1;
+        if (index === numRows - 1) step = -1;
 
-            // Add diagonal character for middle rows
-            let diagIdx = i + step - 2 * row;
-            if (row > 0 && row < numRows - 1 && diagIdx < s.length) {
-                result += s[diagIdx];
-            }
-        }
+        index += step;
     }
 
-    return result;
+    return rows.join("");
 };
